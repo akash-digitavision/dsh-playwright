@@ -1,0 +1,30 @@
+# dsh-playwright profile bundle patch: the official Microsoft Playwright MCP server
+# as a HOST-plane row, following the exact stdio launch from the project README:
+#
+#   npx @playwright/mcp@latest
+#
+# npx downloads @playwright/mcp on first use (30-60s), then keeps it in the npx
+# cache and starts in ~1s — same convention the project documents for Claude Code,
+# Cursor and other clients. failOnStartupError false lets the supervisor retry with
+# backoff while the first download runs; tools appear when the server is up.
+#
+# The server uses your installed Google Chrome by default (headed, persistent
+# profile). Tools are namespaced mcp__playwright__* and coexist with the
+# dsh-chrome-devtools plugin's mcp__chrome-devtools__* tools.
+#
+# Useful launch flags (append to args):
+#   --isolated            in-memory profile; nothing persists between sessions
+#   --headless            no visible browser window
+#   --browser chromium    use Playwright's bundled Chromium instead of Chrome
+#   --caps=vision,pdf     enable extra capability tabs
+#   --config <file>       full JSON config file (see project docs)
+- insert:
+    - id: mcp-playwright
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: playwright
+        transport: stdio
+        command: npx
+        args: ['-y', '@playwright/mcp@latest']
+        toolCallTimeoutMs: 120000
+        failOnStartupError: false

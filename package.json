@@ -1,0 +1,30 @@
+{
+  "name": "dsh-playwright",
+  "version": "0.1.0",
+  "description": "DeepSeek Harness profile bundle: official Microsoft Playwright MCP integration — structured accessibility-tree browser automation via @playwright/mcp",
+  "type": "module",
+  "main": "index.js",
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "exports": {
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "playwright",
+    "mcp",
+    "browser",
+    "microsoft"
+  ]
+}
