@@ -1,6 +1,13 @@
 # dsh-playwright
 
-DeepSeek Harness profile bundle installing the **official Microsoft Playwright MCP** (`@playwright/mcp`) — browser automation through structured **accessibility snapshots** (no vision model needed), from [github.com/microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp). Same bundle pattern as `dsh-chrome-devtools` / `dsh-serena` / `dsh-context7`.
+[![Listed on dsh-plugin.org](https://dsh-plugin.org/badges/listed.svg)](https://dsh-plugin.org/plugins/akash-digitavision/dsh-playwright)
+
+**One-line value:** install this and every DeepSeek Harness agent can drive a real browser — navigation, clicking, typing, snapshots, screenshots — using the official Microsoft Playwright MCP.
+
+DeepSeek Harness profile bundle installing the **official Microsoft Playwright MCP** (`@playwright/mcp`) — browser automation through structured **accessibility snapshots** (no vision model needed), from [github.com/microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp). Same bundle pattern as `dsh-chrome-devtools`.
+
+**Capability category:** 工具与能力 (Tools & Capabilities)
+**License:** MIT · **Compatibility:** DSH ≥ 0.2.0-rc.2 (bundles API), Windows/macOS/Linux (Node.js + npx + Chrome/Chromium required)
 
 Configuration source: verified via Context7 against the project's own README — the standard client config is exactly:
 
@@ -20,9 +27,25 @@ Configuration source: verified via Context7 against the project's own README —
 
 ## Install
 
-Add to the profile `package.json` `dependencies` + `dsh.profile.bundles` (or `dsh plugin --profile desktop add file:C:/Users/IT LAB/Documents/deepseek-harness/dsh-playwright`), `pnpm install`, restart or re-apply.
+**One command (recommended):**
+
+```bash
+dsh plugin --profile web add github:akash-digitavision/dsh-playwright
+```
+
+or in **Settings → Plugin Market** (DSH Plugin Hub), search for `dsh-playwright`.
+
+**Manual alternative** — add `dsh-playwright` to the profile `package.json` `dependencies` + `dsh.profile.bundles`, run `pnpm install` in the profile, restart or re-apply.
+
+**Requirements:** Node.js ≥ 18 with npx (the MCP server downloads on first use), and an installed Chrome or Chromium.
 
 > Note: `file:` dependencies are **copied** into the profile by pnpm — after editing this bundle's `cordis.patch.yml`, run `pnpm install` again (or edit the installed copy under `node_modules\dsh-playwright`) before re-applying.
+
+## Permissions & external services
+
+- Spawns a local `npx @playwright/mcp` process that launches a real browser on your machine
+- No accounts, no API keys, no telemetry; network access is whatever pages you browse
+- Edits/automation run with your user privileges — review prompts before approving destructive actions
 
 ## Optional launch flags
 
